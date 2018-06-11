@@ -1,5 +1,5 @@
 .Rproj.user/
 public/
 .Rproj.user
-**.html
+content/posts/*.html
 .Rhistory
