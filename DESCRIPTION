@@ -9,5 +9,11 @@ Encoding: UTF-8
 LazyData: true
 Suggests: testthat
 Imports:
-    blogdown
+    blogdown,
+    styler,
+    oneliner,
+    strcode
 RoxygenNote: 6.0.1.9000
+Remotes:  
+    lorenzwalthert/oneliner,
+    lorenzwalthert/strcode
