@@ -13,7 +13,6 @@ description: styler is a flexible source code fromatter that makes styling files
 slug: stylerpost2
 aliases: stylerpost2
 comments: true
-date: "2018-03-09"
 ---
 
 [styler](https://github.com/r-lib/styler) 1.0.1 is now available on CRAN. It's mainly a maintenance release and contains bug fixes and speed improvements.

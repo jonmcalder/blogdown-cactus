@@ -11,7 +11,6 @@ description: strcode provides tools to bring more structure into your code. Its 
 comments: yes
 slug: strcode1
 aliases: strcode1
-date: "2017-02-20"
 ---
 ```{r, include= FALSE}
 op <- options()$strcode
