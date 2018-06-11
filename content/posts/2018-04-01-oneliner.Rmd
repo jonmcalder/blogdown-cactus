@@ -1,0 +1,55 @@
+---
+title: "oneliner - a new style guide for styler"
+description: styler is a flexible source code fromatter that makes styling 
+  files, packages or entire R source trees a breeze. This blog post introduces
+  a third-party style guide called oneliner that can be used in conjunction 
+  with styler to format code.
+author: "Lorenz Walthert"
+comments: true
+date: "2018-04-01"
+slug: oneliner
+---
+
+I am happy to introduce [oneliner](https://github.com/lorenzwalthert/oneliner), a package that implements the *one-line-style* as a third-party style guide ready to use with [styler](https://github.com/r-lib/styler). Hence, after the tidyverse style guide, this is the first third-party style guide for styler I am aware of - and a particularly useful one.
+
+Let’s see an example
+
+```{r}
+# remotes::install_github("lorenzwalthert/oneliner")
+library(oneliner)
+style_text(
+  "sum <- function(x, y) {
+   x + # hi
+   y
+  }
+  1 + 1",
+  style = one_line_style
+)
+```
+
+As you can guess from the name and the code above, the style guide has three rules only: 
+
+* Remove all comments.
+* Remove (almost all) spaces possible.
+* Put all code on one line.
+
+Compared to the [tidyverse style guide](http://style.tidyverse.org), which contains 37 sections organized in seven chapters (with each section typically containing multiple rules), *one-line-style* is a great simplification to say the least. Further advantages of the style guide proposed include:
+
+  - Entirely self-explanatory (probably biggest plus).
+  - It ends the tabs / spaces indention war in an unexpected and elegant
+    way.
+  - You don’t need to worry about EOL markers.
+  - You can easily export to csv. One command per column.
+  - People (including you) can't read your code and think you are a genius.
+  - and so on.
+
+I am sure I have convinced you that this style guide rocks. This is for
+real programmers. All code on one line. No spaces or comments. I am
+serious. Use this style guide to format your code like nerds do. Or if you quit a company and you want to give your team mates a little challenge. 
+
+As a final note, be aware that you can always use the tidyverse style guide on code that was styled according to *one-line-style* because the AST should not be changed with *one-line-style*.
+```{r}
+library("styler")
+style_text("sum<-function(x,y){x+y};1+1", style = tidyverse_style)
+```
+

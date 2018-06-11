@@ -1,19 +1,18 @@
 # Site settings
 baseurl = "your_site_url_address"
 languageCode = "en"
-title = "site title"
+title = "Lorenz Walthert"
 theme = "hugo-theme-cactus-plus"
 googleAnalytics = "your_google_analytics_id"
 # Set the value to true if your site include CJK (Chinese, Japanese, and Korean languages) characters
 hasCJKLanguage = false
 
 [params]
-	author = "site_author"
+	author = "Lorenz Walthert"
 	description = "Site Description"
-	bio = "author biography"
+	bio = "Aspiring Data Scientist"
 
-	twitter = "your_twitter_id"
-	facebook = "your_facebook_id"
+	twitter = "lorenzwalthert"
 
 	enableRSS = true
 	enableToc = true
@@ -74,10 +73,9 @@ hasCJKLanguage = false
 
 # Add additional social link entries underneath
 [social]
-	facebook-square = "https://www.facebook.com/nodejh"
-	twitter-square = "https://www.twitter.com/nodejh"
-	github-square = "https://www.github.com/nodejh"
-
+	twitter-square = "https://www.twitter.com/lorenzwalthert"
+	github-square = "https://www.github.com/lorenzwalthert"
+	linkedin-square = "https://www.linkedin.com/in/lorenzwalthert"
 
 
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]

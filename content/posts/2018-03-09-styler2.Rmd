@@ -1,0 +1,23 @@
+---
+title: "styler 1.0.1"
+author: "Lorenz Walthert"
+description: styler is a flexible source code fromatter that makes styling 
+  files, packages or entire R source trees a breeze. This blog post summarizes 
+  changes we made going from styler's initial release to version 1.0.1
+slug: stylerpost2
+comments: true
+date: "2018-03-09"
+---
+
+[styler](https://github.com/r-lib/styler) 1.0.1 is now available on CRAN. It's mainly a maintenance release and contains bug fixes and speed improvements.
+The highlights are:
+
+* styler 1.0.1 requires tibble 1.4.2 which was optimized for speed, so if you have it installed, styler runs ~2x as fast as before.
+* We're now recognizing and respecting more DSLs used in R comments: rplumber (`#*`), shebang (`#/!`) and knitr chunk headers for spinning (`#+` / `#-`).
+* Code chunks in Rmd documents that don't use the R engine are no longer formatted.
+* Rule adaptations related to changes in the tidyverse style guide and rlang 0.2.0.
+* Removed an annoying implicit `dplyr` dependency.
+  
+For details, you can have a look at the [release notes](https://github.com/r-lib/styler/releases/tag/v1.0.1) or check out [all Pull Requests that were merged into master since the last release](https://github.com/r-lib/styler/pulls?utf8=✓&q=is%3Apr+is%3Amerged+created%3A%3E2017-12-11+), which contains the majority of the bug fixes, as only few were comitted directly to master.
+
+We thank all people who have contributed to this release in one way or another.

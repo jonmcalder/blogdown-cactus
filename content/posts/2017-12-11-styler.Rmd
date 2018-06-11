@@ -1,0 +1,206 @@
+---
+title: "styler - A non-invasive source code formatter for R"
+description: styler is a flexible source code fromatter that makes styling 
+    files, packages or entire R source trees a breeze. The style guide implemented
+    is the tidyverse style guide, but third party style guides are supported.
+author: "Lorenz Walthert"
+comments: true
+date: "2017-12-11"
+slug: stylerpost
+---
+
+I am pleased to announce that the R package 
+[styler](https://github.com/r-lib/styler), which I have worked on 
+through [Google Summer of Code 2017](https://lorenzwalthert.github.io/gsoc2017/)
+with [Kirill Müller](https://twitter.com/krlmlr) and [Yihui Xie](https://twitter.com/xieyihui),
+has reached a mature stage. 
+```{r, echo = FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = "")
+knitr::knit_engines$set(list(
+  styler = function(options) {
+    options$comment <- ""
+    knitr::engine_output(
+      options,
+      
+      c("# Before", options$code),
+      c("# After", styler::style_text(options$code))
+    )
+  }
+))
+
+```
+
+You can now install it from CRAN
+
+```{r, eval = FALSE}
+install.packages("styler")
+```
+
+If your CRAN mirror does not yet have it, you can get it from GitHub with `remotes::install_github("r-lib/styler")`.
+
+The package formats R code, by default according to the [tidyverse style guide](http://style.tidyverse.org).
+The distinguishing feature of styler is its flexibility. We will introduce some
+of the options below. Before I continue, I want to thank my two mentors 
+from Google Summer of Code, in particular 
+[Kirill Müller](https://twitter.com/krlmlr), who was an amazing 
+companion during the three months of coding - and beyond. I feel really blessed 
+how everything came about. In addition, I would like to thank Google for 
+organizing GSOC this year and facilitating the involvement of students in open 
+source projects. 
+
+Back to the package: `styler` can style text, single files, packages and entire
+R source trees with the following functions:
+
+* `style_text()` styles a character vector.
+* `style_file()` styles R and Rmd files.
+* `style_dir()` styles all R and/or Rmd files in a directory.
+* `style_pkg()` styles the source files of an R package.
+* An RStudio Addin that styles the active file R or Rmd file, the current 
+  package or the highlighted code.
+
+# Styling options
+We can limit ourselves to styling just spacing information by indicating this 
+with the `scope` argument:
+
+```{r}
+library("styler")
+library("magrittr")
+style_text("a=3; 2", scope = "spaces")
+```
+
+If you are reading this post on r-bloggers, there might be issues with 
+displaying code and rendered output correctly. You can continue reading on 
+the page this post was published [initially](https://lorenzwalthert.github.io).
+
+Or, on the other extreme of the scale, styling spaces, indention, line breaks 
+and tokens:
+
+```{r}
+style_text("a=3; 2", scope = "tokens")
+```
+
+Another option that is helpful to determine the level of 'invasiveness' is
+`strict`. If set to `TRUE`, spaces and line breaks before or after tokens are
+set to either zero or one. However, in some situations this might be 
+undesirable (so we set `strict = FALSE`), as the following example shows:
+
+```{r}
+style_text(
+  "data_frame(
+     small  = 2 ,
+     medium = 4,#comment without space
+     large  =6
+   )", strict = FALSE
+)
+```
+
+We prefer to keep the equal sign after "small", "medium" and large aligned,
+so we set `strict = FALSE` to set spacing to *at least* one around `=`.
+
+Though simple, hopefully the above examples convey some of the flexibility of 
+the configuration options available in `styler`.  You can find out more about
+options available with the tidyverse style by checking out the help file for
+`style_tidyverse()`. 
+
+# Gallery 
+
+In the sequel, let us focus on a configuration with 
+`strict = TRUE` and `scope = "tokens"` and illustrate a few more examples of 
+code before and after styling.
+
+`styler` can identify and handle unary operators and other math tokens:
+
+```{styler}
+1++1-1-1/2
+```
+
+This is tidyverse style. However, styler offers very granular control for 
+math token spacing. Assuming you like spacing around `+` and `-`, but not 
+around `/` and `*` and `^`. This can be achieved as follows:
+```{r}
+style_text(
+  "1++1/2*2^2", 
+  math_token_spacing = specify_math_token_spacing(zero = c("'/'", "'*'", "'^'"))
+)
+```
+
+It can also format complicated expressions that involve line breaking and 
+indention based on both brace expressions and operators:
+
+```{styler}
+if (x >3) {stop("this is an error")} else {
+c(there_are_fairly_long,
+1 / 33 * 
+2 * long_long_variable_names)%>% k(
+
+) }
+```
+
+Lines are broken after `(` if a function call spans multiple lines:
+
+```{styler}
+do_a_long_and_complicated_fun_cal("which", has, way, to, 
+                              "and longer then lorem ipsum in its full length"
+                              )
+```
+
+`styler` replaces `=` with `<-` for assignment, handles single quotes within 
+strings if necessary, and adds braces to function calls in pipes:
+
+```{styler}
+one= 'one string'
+two= "one string in a 'string'"
+a %>%
+  b %>%
+  c
+```
+
+Function declarations are indented if multi-line:
+
+```{styler}
+my_fun <- function(x, 
+y, 
+z) {
+  just(z)
+}
+```
+
+`styler` can also deal with tidyeval syntax:
+
+```{styler}
+mtcars %>%
+  group_by(!!!my_vars)
+```
+
+
+
+If you, say, don't want comments starting with `###` to be indented, you can 
+formulate an unindention rule:
+```{r}
+style_text(
+  c(
+    "a <- function() {",
+    "### not to be indented",
+    "# indent normally",
+    "33",
+    "}"
+  ),
+  reindention = specify_reindention(regex_pattern = "###", indention = 0)
+  
+)
+```
+
+# Customizing styler - implementing your own style guide
+
+Not only can you customize styler with the options of `tidyverse_style()`. The 
+real flexibility of `styler` is supporting third-party style
+guides. Technically speaking, a style guide such as `tidyverse_style()` is 
+nothing but a set of transformer functions and options. How you can create
+your own style guide is explained in [this](http://styler.r-lib.org/articles/customizing_styler.html) 
+vignette.
+
+# Wrap-up
+
+I hope I have convinced you that you should give `styler` a try. If you find 
+unexpected behavior, you are welcome to file an issue on 
+[GitHub](https://github.com/r-lib/styler/issues). 

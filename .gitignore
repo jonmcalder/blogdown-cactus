@@ -1,3 +1,6 @@
 .Rproj.user/
 themes/
 public/
+.Rproj.user
+**.html
+.Rhistory
