@@ -1,5 +1,5 @@
 # Site settings
-baseurl = "your_site_url_address"
+baseurl = "lorenzwalthert.github.io/"
 languageCode = "en"
 title = "Lorenz Walthert"
 theme = "hugo-theme-cactus-plus"
