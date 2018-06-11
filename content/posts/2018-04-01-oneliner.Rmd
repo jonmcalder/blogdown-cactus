@@ -6,6 +6,7 @@ categories:
   - R
 tags:
   - packages
+  - styler
 description: styler is a flexible source code fromatter that makes styling files,
   packages or entire R source trees a breeze. This blog post introduces a third-party
   style guide called oneliner that can be used in conjunction with styler to format

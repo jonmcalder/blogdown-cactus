@@ -1,9 +1,14 @@
 ---
-title: "strcode - structure your code better"
-author: "Lorenz Walthert"
-description: strcode provides tools to bring more structure into your code. 
-  Its main functionality is inserting code breaks and summarizing code.
-comments: true
+title: strcode - structure your code better
+author: Lorenz Walthert
+date: '2017-02-20'
+categories:
+  - R
+tags:
+  - packages
+description: strcode provides tools to bring more structure into your code. Its main
+  functionality is inserting code breaks and summarizing code.
+comments: yes
 slug: strcode1
 aliases: strcode1
 date: "2017-02-20"

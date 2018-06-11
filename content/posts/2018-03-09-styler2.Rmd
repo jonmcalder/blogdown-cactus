@@ -1,9 +1,15 @@
 ---
-title: "styler 1.0.1"
-author: "Lorenz Walthert"
-description: styler is a flexible source code fromatter that makes styling 
-  files, packages or entire R source trees a breeze. This blog post summarizes 
-  changes we made going from styler's initial release to version 1.0.1
+title: styler 1.0.1
+author: Lorenz Walthert
+date: '2018-03-09'
+categories:
+  - R
+tags:
+  - packages
+  - styler
+description: styler is a flexible source code fromatter that makes styling files,
+  packages or entire R source trees a breeze. This blog post summarizes changes we
+  made going from styler's initial release to version 1.0.1
 slug: stylerpost2
 aliases: stylerpost2
 comments: true
