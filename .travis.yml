@@ -9,6 +9,7 @@ cache:
 
 before_install:
 - npm install netlify-cli -g
+- Rscript -e 'blogdown::install_hugo()'
 
 script:
 - Rscript -e 'blogdown::build_site()'
