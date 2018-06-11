@@ -5,6 +5,7 @@ description: styler is a flexible source code fromatter that makes styling
   files, packages or entire R source trees a breeze. This blog post summarizes 
   changes we made going from styler's initial release to version 1.0.1
 slug: stylerpost2
+aliases: stylerpost2
 comments: true
 date: "2018-03-09"
 ---

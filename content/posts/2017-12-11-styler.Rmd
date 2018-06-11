@@ -7,6 +7,7 @@ author: "Lorenz Walthert"
 comments: true
 date: "2017-12-11"
 slug: stylerpost
+aliases: stylerpost
 ---
 
 I am pleased to announce that the R package 
