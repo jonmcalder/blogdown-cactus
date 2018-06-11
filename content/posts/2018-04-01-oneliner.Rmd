@@ -1,12 +1,16 @@
 ---
-title: "oneliner - a new style guide for styler"
-description: styler is a flexible source code fromatter that makes styling 
-  files, packages or entire R source trees a breeze. This blog post introduces
-  a third-party style guide called oneliner that can be used in conjunction 
-  with styler to format code.
-author: "Lorenz Walthert"
-comments: true
-date: "2018-04-01"
+title: oneliner - a new style guide for styler
+author: Lorenz Walthert
+date: '2018-04-01'
+categories:
+  - R
+tags:
+  - packages
+description: styler is a flexible source code fromatter that makes styling files,
+  packages or entire R source trees a breeze. This blog post introduces a third-party
+  style guide called oneliner that can be used in conjunction with styler to format
+  code.
+comments: yes
 slug: oneliner
 ---
 
