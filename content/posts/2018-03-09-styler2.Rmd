@@ -7,7 +7,7 @@ categories:
 tags:
   - packages
   - styler
-description: styler is a flexible source code fromatter that makes styling files,
+description: styler is a flexible source code formatter that makes styling files,
   packages or entire R source trees a breeze. This blog post summarizes changes we
   made going from styler's initial release to version 1.0.1
 slug: stylerpost2
@@ -15,7 +15,8 @@ aliases: stylerpost2
 comments: true
 ---
 
-[styler](https://github.com/r-lib/styler) 1.0.1 is now available on CRAN. It's mainly a maintenance release and contains bug fixes and speed improvements.
+[styler](https://github.com/r-lib/styler) 1.0.1 is now available on CRAN. 
+It is mainly a maintenance release and contains bug fixes and speed improvements.
 The highlights are:
 
 * styler 1.0.1 requires tibble 1.4.2 which was optimized for speed, so if you have it installed, styler runs ~2x as fast as before.
