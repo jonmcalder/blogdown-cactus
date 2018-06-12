@@ -17,4 +17,4 @@ script:
 after_success:
 - pwd
 - ls
-- echo "Y" | ./deploy.sh
+- ./deploy.sh
