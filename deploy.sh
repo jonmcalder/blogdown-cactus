@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "$PATH"
-if [ $TRAVIS_BRANCH = "production" ]
+if [ $(git symbolic-ref -q HEAD) = "refs/heads/master" ]
 then
 	  echo "you are on master, deploying production."
 	  netlify deploy -t $NETLIFYKEY --path public
