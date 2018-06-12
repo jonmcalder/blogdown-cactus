@@ -45,7 +45,13 @@ preview PR builds. But let's go step by step.
 
 I started my journey reading up on 
 [blogdown](https://bookdown.org/yihui/blogdown/), which I think was a good
-starting point. When I got the basics, I checked out the 
+starting point. If you are like me a few months ago and still are not quite 
+sure what Pandoc, Markdown and knitr exactly are, there is a great 
+[resource from RStudio](https://rmarkdown.rstudio.com/lesson-2.html) 
+on that and I recommend first freshing up your knowledge on the concepts and 
+tools blogdown is built on.
+
+When I got the basics, I checked out the 
 [huog theme gallery](https://themes.gohugo.io/). I was looking for a simplistic
 theme, and I found one: [cactus plus](https://themes.gohugo.io/hugo-theme-cactus-plus/).
 As advised by Yihui, I created a new RStudio Project and ran
