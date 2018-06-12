@@ -17,19 +17,19 @@ though. I was using Jekyll, but my set-up was rather brittle and there were
 a few problems:
 
 - I could not use Rmarkdown directly. I always had to knitr manually to get 
-  plain markdown from my Rmarkdown files. Since the majority of my posts 
+  plain markdown from my Rmarkdown files and then use them as input for Jekyll. 
+  Since the majority of my posts 
   involved at least some R code, this was not a very elegant thing to do.
 - Since every Rmarkdown post had to be converted into plain markdown in a (
   more or less) manual way, I could not use automated builds on GitHub Pages. 
 - This, in turn, meant I had to build the content locally and commit all 
-  derivatives, which isn't very elegant either.
+  derivatives (i.e. html documents), which isn't very elegant either.
   
 
 ## The solution
 
-Below, I outline how I managed to solve these three problems with the three
-tools: blogdown to create content, travis to automate the build process and 
-netlify to deploy the website. But let's go step by step.
+Below, I outline how I managed to address these three problems with the three
+tools: blogdown to create content, netlify to deploy the website and travis to automate the build and deployment step. But let's go step by step.
 
 ### Step 1: Creating content
 
