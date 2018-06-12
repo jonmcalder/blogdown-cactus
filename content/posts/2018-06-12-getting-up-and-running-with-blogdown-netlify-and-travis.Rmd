@@ -1,10 +1,10 @@
 ---
-title: Getting up and running with blogdown, netlify and travis
+title: Switching to blogdown, netlify and travis
 author: Lorenz Walthert
 date: '2018-06-12'
 slug: getting-up-and-running-with-blogdown-netlify-and-travis
-description: How I switched to blogdown and got travis to build my 
-  page and deploy it with netlify.
+description: How I switched from Jekyll to blogdown and got travis to build 
+  my page and deploy it with netlify.
 categories:
   - R
 tags:
@@ -29,7 +29,11 @@ a few problems:
 ## The solution
 
 Below, I outline how I managed to address these three problems with the three
-tools: blogdown to create content, netlify to deploy the website and travis to automate the build and deployment step. But let's go step by step.
+tools: blogdown to create content, netlify to deploy the website and travis to 
+automate the build and deployment step. My approach does not require html or
+markdown derivatives (from Rmarkdown files) to be committed (and pushed) in git, 
+which I think is nice and helps keeping the repo lightweight.
+But let's go step by step.
 
 ### Step 1: Creating content
 
@@ -81,15 +85,21 @@ Also, I changed the publishing URL in the netlify settings, so my page would
 be available under `lorenzwalthert.netlify.com`. You can also use a custom 
 non-netlify domain.
 
-### Step 3: Automatically deploy the page
+Alternatively, you can commit and push markdown or html derivatives of your 
+Rmarkdown files and use the netlify build command `hugo`, potentially specifying
+the hugo version as part of the bulid command (like `hugo_0.19`) or via an 
+environment variable. However, I refrained from doing this because I felt like
+this approach was not as clean as building the whole page on a remote CI tool.
+
+### Step 3a: Automatically deploy the page
 
 Finally, deploying the page manually every time you make a change seems like a
 step that could be automatized - and it is. I had no idea how though. For some 
 reason, I knew that the [tidyverse style guide](http://style.tidyverse.org) 
 gets deployed automatically with netlify, so I looked at the GitHub repo to 
 figure out how it might work. I realized that they use travis to do the 
-deployment. I inspected the `.travis.yaml` file and copied it over to my repo.
-After tweaking it a little, I ended up with the following `.travis.yaml` file:
+deployment. I inspected the `.travis.yml` file and copied it over to my repo.
+After tweaking it a little, I ended up with the following `.travis.yml` file:
 
 ```
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
@@ -146,11 +156,43 @@ There were only two more steps to complete:
   [tidyverse style guide repo](https://github.com/tidyverse/style) so I figured 
   that this was the last missing piece.
 
-## Roundup
+
+### Step 3b: Automatically deploy the page with merge preview
 
 This was it. The next build succeeded and my site got deployed. A nice feature
 of netlify is also that you can pre-view rendered pull requests before you 
-merge them, so you can detect dead links, missing pictures etc. You should
+merge them, so you can detect dead links, missing pictures etc. When I clicked 
+on the netlify CI link in the PR on GitHub, I got an empty page. What was that? 
+After skimming through my netlify settings, I discovered that the build command
+was set to `hugo`. When I run `$ hugo` locally, I got the same result as the 
+netlify preview. Hugo was expecting either html or markdown files, but I only
+had Rmarkdown. So just as for the regular build process, I could not use netlify
+to build my page. Dang.
+
+I checked out the [tidyverse.org](https://github.com/tidyverse/tidyverse.org)
+website from which I knew that they had netlify previews. The way it works (
+as of June 2018) was that people had to locally serve the site and also commit
+the derivaties, i.e. the html pages, which is basically equivalent to the 
+approach mentioned in the last paragraph of Step 2. Since I already achieved 
+deploying the page with travis and netlify without committing any derivaties, I 
+felt like it could not be all that complicated to do the same for PRs.
+
+A few hours later, I figured out how to do it.
+
+* First, you need to know that in the above script, the deployment happens 
+  only for the production branch. Hence, you need to use `after_success:` in 
+  `.travis.yml` instead of `deploy:`, the former getting executed for every 
+  branch.
+* Then, I wrote a little bash script that
+    * First checks if the current branch is the master branch or some other 
+      branch.
+    * Depending on that, either do a normal deploy of the page (in case we are
+      on master) or only deploy a draft.
+
+
+## Roundup
+
+ You should
 be able to see the links to the relevant netlify domain in your CI checks.
 
 Overall, I am pretty happy with the set-up now. In case you are interested in 
