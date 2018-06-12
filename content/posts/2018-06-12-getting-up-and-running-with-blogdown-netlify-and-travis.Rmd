@@ -10,6 +10,10 @@ categories:
 tags:
   - writing
 ---
+```{r}
+knitr::opts_chunk$set(comment = "")
+```
+
 
 ## The problem
 Some time ago, I started a blog. I actually did not post a whole lot of stuff 
@@ -87,7 +91,7 @@ non-netlify domain.
 
 Alternatively, you can commit and push markdown or html derivatives of your 
 Rmarkdown files and use the netlify build command `hugo`, potentially specifying
-the hugo version as part of the bulid command (like `hugo_0.19`) or via an 
+the hugo version as part of the build command (like `hugo_0.19`) or via an 
 environment variable. However, I refrained from doing this because I felt like
 this approach was not as clean as building the whole page on a remote CI tool.
 
@@ -172,9 +176,9 @@ to build my page. Dang.
 I checked out the [tidyverse.org](https://github.com/tidyverse/tidyverse.org)
 website from which I knew that they had netlify previews. The way it works (
 as of June 2018) was that people had to locally serve the site and also commit
-the derivaties, i.e. the html pages, which is basically equivalent to the 
+the derivatives, i.e. the html pages, which is basically equivalent to the 
 approach mentioned in the last paragraph of Step 2. Since I already achieved 
-deploying the page with travis and netlify without committing any derivaties, I 
+deploying the page with travis and netlify without committing any derivatives, I 
 felt like it could not be all that complicated to do the same for PRs.
 
 A few hours later, I figured out how to do it.
@@ -189,11 +193,31 @@ A few hours later, I figured out how to do it.
     * Depending on that, either do a normal deploy of the page (in case we are
       on master) or only deploy a draft.
 
+This translates to the following deployment script:
+
+```{r}
+cat(readLines(here::here("deploy.sh")), sep = "\n")
+```
+
+
+The draft mode in particular uses your key and publishing directory from the 
+context stored in your `.netlify` file. The draft won't show up in your netlify
+dashboard, but you need to go to the travis log, unfold the `./deploy.sh` call 
+to see where the site got deployed to. Copy this URL in a browser and check out 
+if the page looks as expected. Keep in mind that the netlify CI check that is 
+shown in the GitHub PR is the empty page, and you should really check the 
+netlify page build from travis.
+I nevertheless changed the settings in netlify for the deployment for the 
+former so I get three green ticks.
+
+For the `build.sh` to get called, you obviously also need to change your
+`.traivs.yml`. Here is my final version:
+
+```{r}
+cat(readLines(here::here(".travis.yml")), sep = "\n")
+```
 
 ## Roundup
-
- You should
-be able to see the links to the relevant netlify domain in your CI checks.
 
 Overall, I am pretty happy with the set-up now. In case you are interested in 
 some of the details I skipped above, feel free to reach out to me via the 

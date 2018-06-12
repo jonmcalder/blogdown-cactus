@@ -12,8 +12,9 @@ Imports:
     blogdown,
     styler,
     oneliner,
-    strcode
+    strcode,
+    here
 RoxygenNote: 6.0.1.9000
-Remotes:  
+Remotes: 
     lorenzwalthert/oneliner,
     lorenzwalthert/strcode
