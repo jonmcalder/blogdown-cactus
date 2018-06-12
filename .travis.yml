@@ -14,7 +14,5 @@ before_install:
 script:
 - Rscript -e 'blogdown::build_site()'
 
-deploy:
-  provider: script
-  script: netlify deploy -t $NETLIFYKEY
-  skip_cleanup: true
+after_success:
+- script: echo "Y" | ./deploy.sh
