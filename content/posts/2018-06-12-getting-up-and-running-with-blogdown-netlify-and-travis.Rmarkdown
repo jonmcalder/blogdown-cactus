@@ -121,11 +121,11 @@ non-netlify domain. I also added a `CNAME` file to the root directory of the
 repo where my old website was hosted, so `https://lorenzwalthert.github.io` 
 would forward to `https://lorenzwalthert.netlify.com`. I also tried to use the 
 netlify DNS service, but I think I won't be able to show the content of 
-`https://lorenzwalthert.netlify.com` to people visitng 
+`https://lorenzwalthert.netlify.com` to people visiting 
 `https://lorenzwalthert.github.io` because I do not own the domain. So for now, 
 it's ok for me that people just get redirected.
 
-In addition, I made sure all old URLs redirected correclty, which I did by 
+In addition, I made sure all old URLs redirected correctly, which I did by 
 adding a `aliases: [new_url]` entry to the YAML header of my posts.
 
 
@@ -264,11 +264,11 @@ cat(readLines(here::here(".travis.yml")), sep = "\n")
 Overall, I am pretty happy with the set-up now. 
 Looking back, it would have been much easier to build the page locally and 
 simply commit md or html derivatives. 
-If I'd forseen the trouble involved in getting
-it working, I possibly would have choosen this approach. Now that I figured out
-how you can do without committing derivaties, I hope some people find this post 
+If I'd foreseen the trouble involved in getting
+it working, I possibly would have choose this approach. Now that I figured out
+how you can do without committing derivatives, I hope some people find this post 
 useful and decide to adapt this strategy. In case you are interested in some of 
-the details I skipped above for the sake of brievity, feel free to reach out to
+the details I skipped above for the sake of brevity, feel free to reach out to
 me via the comment functionality below. I hope these instructions are 
 informative so that you'll need a fraction of the time I spend on configuring 
 my site.
