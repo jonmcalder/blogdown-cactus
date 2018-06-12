@@ -9,6 +9,7 @@ categories:
   - R
 tags:
   - writing
+  - workflow
 ---
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(comment = "", echo = FALSE)
@@ -32,8 +33,9 @@ a few problems:
 
 ## The solution
 
-Below, I outline how I managed to address these three problems with the three
-tools: blogdown to create content, netlify to deploy the website and travis to 
+Below, I outline how I managed to address these three problems with the
+following three tools: 
+blogdown to create content, netlify to deploy the website and travis to 
 automate the build and deployment step. My approach does not require html or
 markdown derivatives (from Rmarkdown files) to be committed (and pushed) in git, 
 which I think is nice and helps keeping the repo lightweight.
