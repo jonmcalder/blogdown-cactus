@@ -193,7 +193,9 @@ A few hours later, I figured out how to do it.
     * First checks if the current branch is the master branch or some other 
       branch.
     * Depending on that, either do a normal deploy of the page (in case we are
-      on master) or only deploy a draft.
+      on master) or only deploy a draft.^[Note that there seems to be only one
+      URL for built drafts. Hence, the URL always reflects the last built PR, 
+      so it's inconvenient to work on multiple drafts at the same time.]
 
 This translates to the following deployment script:
 
