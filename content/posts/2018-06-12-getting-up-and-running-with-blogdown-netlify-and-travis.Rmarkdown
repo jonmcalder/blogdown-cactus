@@ -75,20 +75,18 @@ at the beginning of every post. However, they only work
 if the posts that are input to hugo are in markdown, not if they 
 are html already. If you add a YAML option in 
 your Rmd file that creates a toc, it's using some default css instead of using 
-the one defined in the hugo theme. The solution is to use `Rmarkdown` files 
-instead of `.Rmd` for all posts where you want a table of contents on the top. 
+the one defined in the hugo theme. The solution is to use `.Rmarkdown` files 
+instead of `.Rmd` for all posts where you want a table of contents at the top. 
 This means blogdown won't render to html, 
 but first to markdown and then call hugo to turn the markdown files into html. 
-You can follow up on debates around the pros and cons of using `.Rmarkdown` 
-instead of `.Rmd` in 
-[rstudio/blogdown#165](https://github.com/rstudio/blogdown/issues/165). You 
-can also find some notes in the blogdown
-[documentation](https://bookdown.org/yihui/blogdown/output-format.html) on the 
+You can find some notes in the blogdown
+[documentation](https://bookdown.org/yihui/blogdown/output-format.html) and in 
+[rstudio/blogdown#165](https://github.com/rstudio/blogdown/issues/165) on the 
 matter. Main drawback of using `.Rmarkdown` over `.Rmd` is that html widgets 
 and citations are not supported and you might have issues with math 
 expressions, which is because you use hugo instead of Pandoc to go from 
-markdown to html.
-
+markdown to html. I ended up using `.Rmarkdown` for the post you are reading 
+because I wanted a toc, for quite a few other posts, I stuck to `.Rmd`.
 
 Now that I had the content, I had to think about how to deploy the page.
 
@@ -96,16 +94,17 @@ Now that I had the content, I had to think about how to deploy the page.
 
 I read the section [on deployment](https://bookdown.org/yihui/blogdown/deployment.html) 
 in the blogdown documentation, but it was not particularly revealing to me. It
-seems as most other people in the community just commit html or md files, but 
-I figured that I'd like to deploy my page without committing these derivatives
-and operate on pure Rmarkdown instead. A quick Google search did not 
-help much either. I then realized I might want to use the 
-[netlify cli tools](https://www.netlify.com/docs/cli/) to deploy a locally
-built site with netlify. The only problem with that was that these only seemed 
-to work properly on Linux, which is not my primary operating system. Anyways, I 
-managed to deploy a page from my Linux environment with netlify. It's pretty 
-straightforward once you managed to build your website locally and stored it 
-in the `public/` directory. Here is what I did:
+seemed as most other people in the community just commit html or 
+markdown files, but I figured that I'd like to deploy my page without 
+committing these derivatives and operate on pure Rmarkdown instead. 
+A quick Google search did not help much either. I then realized I might 
+want to use the [netlify cli tools](https://www.netlify.com/docs/cli/) 
+to deploy a locally built site with netlify. The only problem with that 
+was that these only seemed to work properly on Linux, which is not my primary 
+operating system. Anyways, I managed to deploy a page from my Linux 
+environment with netlify. It's pretty straightforward once you succeeded 
+to build your website locally and stored it in the `public/` directory. 
+Here is what I did:
 
 * use the RStudio Addin Serve Site (or `blogdown::serve_site()`), which 
   updates your static site in the self-containing publishing directory, 
