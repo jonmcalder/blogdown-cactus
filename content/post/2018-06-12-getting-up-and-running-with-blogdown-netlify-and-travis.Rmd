@@ -40,27 +40,26 @@ starting point. When I got the basics, I checked out the
 theme, and I found one: [cactus plus](https://themes.gohugo.io/hugo-theme-cactus-plus/).
 As advised by Yihui, I created a new RStudio Project and ran
 `blogdown::new_site(theme = "nodejh/hugo-theme-cactus-plus")`. So far so good.
-I noted that instead of `content/post`, the directory with the 
-blog posts was in `content/posts`, but it did not seem to matter. I copied over
-some of my old blog posts into this directory and adapted the YAML headers to 
-match the format of the example posts, which worked smoothly.
+I copied over some of my old blog posts into this directory and adapted the YAML
+headers to match the format of the example posts, which worked smoothly.
 Next, I adapted some configurations using the explanations in the 
 [cactus plus README](https://github.com/nodejh/hugo-theme-cactus-plus#example-site).
 In particular, I did the following:
 
 * Adapted the avatar, title and subtitle of the webpage.
-* Set `useDescriptionReplaceSummary` in `config.toml` to `true`.
-* Added my `disqus` user name to `config.toml`.
+* Set `useDescriptionReplaceSummary` in `config.toml` to `true` to use the 
+  custom description from the YAML header for each post.
+* Added my `disqus` and `google_analytics` user name to `config.toml`.
 * Most importantly, **I set the base url to "/"** in in `config.toml`. Note 
   that the base URL should in any case end with a back slash, otherwise certain
   pages won't render correctly, i.e. the `tags` page.
 
 Now that I had the content, I had to think about how to deploy the page.
 
-### Step 2: Deploy the page
+### Step 2: Deploying the page
 
-I read the section [on deployment](https://bookdown.org/yihui/blogdown/deployment.html) in the blogdown documentation, but it was not particularly revealing to me. In
-particular, it was not clear to me how I can build the page with netlify since
+I read the section [on deployment](https://bookdown.org/yihui/blogdown/deployment.html) in the blogdown documentation, but it was not particularly revealing to me. First and foremost, 
+it was not clear to me how I can build the page with netlify since
 the build commands `hugo` and `jekyll` were not able to convert Rmarkdown into
 html - or at least that's what I thought. A quick Google search did not 
 help much either. I then realized I might want to use the 
@@ -76,7 +75,7 @@ in the `public/` directory. Here is what I did:
   `public/` by default.
 * Following the video in the 
   [netlify cli tools documentation](https://www.netlify.com/docs/cli/), i.e.
-  essentially `$ netlify deploy`.
+  essentially `$ netlify deploy` my `public/` folder.
   
 Also, I changed the publishing URL in the netlify settings, so my page would 
 be available under `lorenzwalthert.netlify.com`. You can also use a custom 
@@ -120,28 +119,40 @@ access token for netlify which I could pass to travis so it has the
 privileges to deploy to netlify. Essentially you go [here](https://app.netlify.com/applications) and create a new access
 token, which you in turn add a hidden environment variable in the travis 
 settings of the repo that contains the source code for the webpage to deploy. 
-This environment variable is used in the deploy script above, so if you want 
-to use this script, you need to call the variable `NETLIFYKEY`. The `-t` in
-the deploy script stands for `token`. Do **not** hard-code your token into the
-deployment command but use the environment variable as shown above, except 
+This environment variable is used in the deploy step in the script above, so if 
+you want to use this script, you need to call the variable `NETLIFYKEY`. 
+The `-t` flag in
+the deployment command stands for `token`. Do **not** hard-code your token into 
+the deployment command but use the environment variable as shown above, except 
 you want to share the access credentials of your netlify account with the world.
-
 
 There were only two more steps to complete:
 
 * Add a DESCRIPTION file to my repo and add the dependencies I used in my 
   R code to it, which you
-  can do most conveniently with `usethis::use_package("your_package")`. 
-  Alternatively, you can add install commands to your `.travis.yaml` file.
+  can do most conveniently with `usethis::use_package("your_package")` after 
+  you added a basic DESCRIPTION file. 
+  Alternatively, you can add install commands to your `.travis.yaml` file but 
+  I think the DESCRIPTION solution is nicer.
 * Copied the `.netlify` file from my local Linux environment from which I have 
-  already successfully deployed the page. Don't know exactly what it does, but 
-  I think it creates some context that is used when you call `$ netlify deploy`, 
+  already successfully deployed the page. The file is created in the root 
+  directory of your blogdown project. Don't know exactly what it does, but 
+  I think it creates some *deplyoment context* that is used when you call 
+  `$ netlify deploy`, 
   i.e. it does not prompt the user to give further instructions such as the 
-  directory that contains the files to deploy. I also found this file in the 
-  [tidyverse style guide](http://style.tidyverse.org) repo so I figured that 
-  this was the last missing piece.
-  
+  directory that contains the files to deploy. This is helpful because you can't
+  give interactive instructions to travis during the build process.
+  I also found this file in the 
+  [tidyverse style guide repo](https://github.com/tidyverse/style) so I figured 
+  that this was the last missing piece.
+
+## Roundup
+
 This was it. The next build succeeded and my site got deployed. A nice feature
 of netlify is also that you can pre-view rendered pull requests before you 
 merge them, so you can detect dead links, missing pictures etc. You should
 be able to see the links to the relevant netlify domain in your CI checks.
+
+Overall, I am pretty happy with the set-up now. In case you are interested in 
+some of the details I skipped above, feel free to reach out to me via the 
+comment below.
