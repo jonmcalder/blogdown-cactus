@@ -10,8 +10,8 @@ categories:
 tags:
   - writing
 ---
-```{r}
-knitr::opts_chunk$set(comment = "")
+```{r, echo = FALSE}
+knitr::opts_chunk$set(comment = "", echo = FALSE)
 ```
 
 
