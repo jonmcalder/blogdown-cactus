@@ -8,5 +8,5 @@ then
 else 
     echo "you are not on master, deploying preview."
     cd public
-    netlify deploy
+    netlify deploy -t $NETLIFYKEY
 fi
