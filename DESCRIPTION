@@ -1,13 +1,12 @@
-Package: Personal 
-Title: What the Package Does (one line, title case)
+Package: Personal Webpage of Lorenz Walthert
+Title: The source code for the personal webpage of Lorenz Walthert
 Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Authors@R: person("Lorenz", "Walthert", email = "lorenz.walthert@icloud.com", role = c("aut", "cre"))
+Description: The source code for the personal webpage of Lorenz Walthert
 Depends: R (>= 3.3.2)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Suggests: testthat
 Imports:
     blogdown,
     styler,
