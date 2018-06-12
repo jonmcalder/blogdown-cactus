@@ -1,11 +1,16 @@
 ---
-title: "styler - A non-invasive source code formatter for R"
-description: styler is a flexible source code fromatter that makes styling 
-    files, packages or entire R source trees a breeze. The style guide implemented
-    is the tidyverse style guide, but third party style guides are supported.
-author: "Lorenz Walthert"
-comments: true
-date: "2017-12-11"
+title: styler - A non-invasive source code formatter for R
+author: Lorenz Walthert
+date: '2017-12-11'
+categories:
+  - R
+tags:
+  - packages
+  - styler
+description: styler is a flexible source code fromatter that makes styling files,
+  packages or entire R source trees a breeze. The style guide implemented is the tidyverse
+  style guide, but third party style guides are supported.
+comments: yes
 slug: stylerpost
 aliases: stylerpost
 ---

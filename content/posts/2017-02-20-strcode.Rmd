@@ -6,6 +6,7 @@ categories:
   - R
 tags:
   - packages
+  - workflow
 description: strcode provides tools to bring more structure into your code. Its main
   functionality is inserting code breaks and summarizing code.
 comments: yes
