@@ -70,6 +70,26 @@ In particular, I did the following:
   that the base URL should in any case end with a back slash, otherwise certain
   pages won't render correctly, i.e. the `tags` page.
 
+I noted that the cactus theme had gorgeous table of contents (toc) 
+at the beginning of every post. However, they only work 
+if the posts that are input to hugo are in markdown, not if they 
+are html already. If you add a YAML option in 
+your Rmd file that creates a toc, it's using some default css instead of using 
+the one defined in the hugo theme. The solution is to use `Rmarkdown` files 
+instead of `.Rmd` for all posts where you want a table of contents on the top. 
+This means blogdown won't render to html, 
+but first to markdown and then call hugo to turn the markdown files into html. 
+You can follow up on debates around the pros and cons of using `.Rmarkdown` 
+instead of `.Rmd` in 
+[rstudio/blogdown#165](https://github.com/rstudio/blogdown/issues/165). You 
+can also find some notes in the blogdown
+[documentation](https://bookdown.org/yihui/blogdown/output-format.html) on the 
+matter. Main drawback of using `.Rmarkdown` over `.Rmd` is that html widgets 
+and citations are not supported and you might have issues with math 
+expressions, which is because you use hugo instead of Pandoc to go from 
+markdown to html.
+
+
 Now that I had the content, I had to think about how to deploy the page.
 
 ## Step 2: Deploying the page
