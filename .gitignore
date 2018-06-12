@@ -2,4 +2,5 @@
 public/
 .Rproj.user
 content/posts/*.html
+content/posts/*.markdown
 .Rhistory
