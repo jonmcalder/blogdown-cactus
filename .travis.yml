@@ -15,4 +15,6 @@ script:
 - Rscript -e 'blogdown::build_site()'
 
 after_success:
-- script: echo "Y" | ./deploy.sh
+- pwd
+- ls
+- echo "Y" | ./deploy.sh
