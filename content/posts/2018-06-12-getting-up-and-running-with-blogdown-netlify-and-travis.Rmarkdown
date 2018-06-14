@@ -175,6 +175,7 @@ privileges to deploy to netlify. Essentially you go
 [here](https://app.netlify.com/applications) and create a new access
 token, which you in turn add a hidden environment variable in the travis 
 settings of the repo that contains the source code for the webpage to deploy. 
+![](/posts/2018-06-12-getting-up-and-running-with-blogdown-netlify-and-travis_files/travis-ci-envir-var.png)
 This environment variable is used in the deploy step in the script above, so if 
 you want to use this script, you need to call the environment variable `NETLIFYKEY`. 
 The `-t` flag in
@@ -251,12 +252,17 @@ dashboard, but you need to go to the travis log, unfold the `./deploy.sh` call
 at the very bottom to see where the site got deployed to.
 ![](/posts/2018-06-12-getting-up-and-running-with-blogdown-netlify-and-travis_files/ci-deploy.png)
 
-Copy this URL in a  browser and check out 
+Paste this URL to a browser and check 
 if the page looks as expected. Keep in mind that the netlify CI check that is 
-shown in the GitHub PR is the empty page, and you should really check the 
-netlify page build from travis.
+shown in the GitHub PR (depicted bellow) is the build of the empty page and is 
+hence irrelevant for the approach presented under the header 3b. 
+Use the one from the travis log in the above picture.
+![](/posts/2018-06-12-getting-up-and-running-with-blogdown-netlify-and-travis_files/github-ci.png)
+
 I nevertheless changed the settings in netlify for the deployment for the 
-former so I get three green ticks.
+former so I get three green ticks. The reason it first failed was that 
+the cactus plus theme has a minimal version requirement for hugo that is larger
+than the hugo default version.
 
 For the `build.sh` to get called, you obviously also need to change your
 `.traivs.yml`. Here is my final version:
@@ -267,14 +273,33 @@ cat(readLines(here::here(".travis.yml")), sep = "\n")
 
 # Roundup
 
-Overall, I am pretty happy with the set-up now. 
+Overall, I am pretty happy with the set-up now. Let me summarize again
+how the approach outlined in step 3b compare to existing solutions I have found.
+
+* It is similar to htts://style.tidyverse.org in that it does not require 
+  derivatives to be committed and PR builds can be previewed. 
+  However, style.tidyverse.org was built with 
+  [bookdown](https://bookdown.org).
+* It is similar to [tidyverse.org](https://tidverse.org) as the page also uses
+  blogdown and offers PR build previews. The difference is that tidyverse.org 
+  does not use travis to deploy via netlify, but instead requires html 
+  versions of all pages to be committed that are build locally with hugo.
+
 Looking back, it would have been much easier to build the page locally and 
-simply commit md or html derivatives. 
+simply commit markdown or html derivatives, as suggested by Yihui in his 
+chapter on 
+[netlify deployment](https://bookdown.org/yihui/blogdown/netlify.html).
 If I'd foreseen the trouble involved in getting
 it working, I possibly would have choose this approach. Now that I figured out
 how you can do without committing derivatives, I hope some people find this post 
-useful and decide to adapt this strategy. In case you are interested in some of 
+useful and decide to adapt this strategy. 
+
+In case you are interested in some of 
 the details I skipped above for the sake of brevity, feel free to reach out to
-me via the comment functionality below. I hope these instructions are 
-informative so that you'll need a fraction of the time I spend on configuring 
+me via the comment functionality below. Checking out the
+[source code](https://github.com/lorenzwalthert/blogdown-cactus) 
+of this webpage might be clarifying too. 
+
+I hope these instructions are informative so that you'll need a fraction of 
+the time I spend on configuring 
 my site.
