@@ -276,14 +276,14 @@ cat(readLines(here::here(".travis.yml")), sep = "\n")
 Overall, I am pretty happy with the set-up now. Let me summarize again
 how the approach outlined in step 3b compare to existing solutions I have found.
 
-* It is similar to htts://style.tidyverse.org in that it does not require 
-  derivatives to be committed and PR builds can be previewed. 
+* It is similar to [style.tidyverse.org](http://style.tidyverse.org) in that it
+  does not require derivatives to be committed and PR builds can be previewed. 
   However, style.tidyverse.org was built with 
   [bookdown](https://bookdown.org).
-* It is similar to [tidyverse.org](https://tidverse.org) as the page also uses
+* It is similar to [tidyverse.org](https://tidyverse.org) as the page also uses
   blogdown and offers PR build previews. The difference is that tidyverse.org 
   does not use travis to deploy via netlify, but instead requires html 
-  versions of all pages to be committed that are build locally with hugo.
+  versions of all pages to be committed that are build locally with blogdown.
 
 Looking back, it would have been much easier to build the page locally and 
 simply commit markdown or html derivatives, as suggested by Yihui in his 
