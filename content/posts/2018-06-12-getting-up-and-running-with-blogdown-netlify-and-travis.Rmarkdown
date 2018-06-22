@@ -1,9 +1,9 @@
 ---
-title: Switching to blogdown, netlify and travis
+title: Switching to blogdown, netlify and Travis
 author: Lorenz Walthert
 date: '2018-06-12'
 slug: getting-up-and-running-with-blogdown-netlify-and-travis
-description: How I switched from Jekyll to blogdown and got travis to build 
+description: How I switched from Jekyll to blogdown and got Travis to build 
   my page and deploy it with netlify. No derivatives such as md or html need
   to be committed and PR builds can be previewed.
 categories:
@@ -21,11 +21,11 @@ Some time ago, I started a blog. I actually did not post a whole lot of stuff
 though. I was using Jekyll, but my set-up was rather brittle and there were 
 a few problems:
 
-- I could not use Rmarkdown directly. I always had to knitr manually to get 
-  plain markdown from my Rmarkdown files and then use them as input for Jekyll. 
+- I could not use R Markdown directly. I always had to knitr manually to get 
+  plain markdown from my R Markdown files and then use them as input for Jekyll. 
   Since the majority of my posts 
   involved at least some R code, this was not a very elegant thing to do.
-- Since every Rmarkdown post had to be converted into plain markdown in a (
+- Since every R Markdown post had to be converted into plain markdown in a (
   more or less) manual way, I could not use automated builds on GitHub Pages. 
 - This, in turn, meant I had to build the content locally and commit all 
   derivatives (i.e. html documents), which isn't very elegant either.
@@ -35,9 +35,9 @@ a few problems:
 
 Below, I outline how I managed to address these three problems with the
 following three tools: 
-blogdown to create content, netlify to deploy the website and travis to 
+blogdown to create content, netlify to deploy the website and Travis to 
 automate the build and deployment step. My approach does not require html or
-markdown derivatives (from Rmarkdown files) to be committed (and pushed) in git, 
+markdown derivatives (from R Markdown files) to be committed (and pushed) in git, 
 which I think is nice and helps keeping the repo lightweight. You can also 
 preview PR builds. But let's go step by step.
 
@@ -52,7 +52,7 @@ on that and I recommend first freshing up your knowledge on the concepts and
 tools blogdown is built on.
 
 When I got the basics, I checked out the 
-[huog theme gallery](https://themes.gohugo.io/). I was looking for a simplistic
+[hugo theme gallery](https://themes.gohugo.io/). I was looking for a simplistic
 theme, and I found one: [cactus plus](https://themes.gohugo.io/hugo-theme-cactus-plus/).
 As advised by Yihui, I created a new RStudio Project and ran
 `blogdown::new_site(theme = "nodejh/hugo-theme-cactus-plus")`. So far so good.
@@ -142,7 +142,7 @@ Finally, deploying the page manually every time you make a change seems like a
 step that could be automatized - and it is. I had no idea how though. For some 
 reason, I knew that the [tidyverse style guide](http://style.tidyverse.org) 
 gets deployed automatically with netlify, so I looked at the GitHub repo to 
-figure out how it might work. I realized that they use travis to do the 
+figure out how it might work. I realized that they use Travis to do the 
 deployment. I inspected the `.travis.yml` file and copied it over to my repo.
 After tweaking it a little, I ended up with the following `.travis.yml` file:
 
@@ -170,10 +170,10 @@ deploy:
 ```
 
 In addition, I found [this](https://therocketeers.github.io/blog/using-travis-ci-to-deploy-jekyll-on-netlify/) blog post, where I learned how I could create an 
-access token for netlify which I could pass to travis so it has the 
+access token for netlify which I could pass to Travis so it has the 
 privileges to deploy to netlify. Essentially you go 
 [here](https://app.netlify.com/applications) and create a new access
-token, which you in turn add a hidden environment variable in the travis 
+token, which you in turn add a hidden environment variable in the Travis 
 settings of the repo that contains the source code for the webpage to deploy. 
 ![](/posts/2018-06-12-getting-up-and-running-with-blogdown-netlify-and-travis_files/travis-ci-envir-var.png)
 This environment variable is used in the deploy step in the script above, so if 
@@ -198,7 +198,7 @@ There were only two more steps to complete:
   `$ netlify deploy`, 
   i.e. it does not prompt the user to give further instructions such as the 
   directory that contains the files to deploy. This is helpful because you can't
-  give interactive instructions to travis during the build process.
+  give interactive instructions to Travis during the build process.
   I also found this file in the 
   [tidyverse style guide repo](https://github.com/tidyverse/style) so I figured 
   that this was the last missing piece.
@@ -222,7 +222,7 @@ website from which I knew that they had netlify previews. The way it works (
 as of June 2018) was that people had to locally serve the site and also commit
 the derivatives, i.e. the html pages, which is basically equivalent to the 
 alternative approach mentioned in step 2. Since I already achieved 
-deploying the page with travis and netlify without committing any derivatives, I 
+deploying the page with Travis and netlify without committing any derivatives, I 
 felt like it could not be all that complicated to do the same for PRs.
 
 A few hours later, I figured out how to do it.
@@ -248,7 +248,7 @@ cat(readLines(here::here("deploy.sh")), sep = "\n")
 
 The draft mode in particular uses your key and publishing directory from the 
 context stored in your `.netlify` file. The draft won't show up in your netlify
-dashboard, but you need to go to the travis log, unfold the `./deploy.sh` call 
+dashboard, but you need to go to the Travis log, unfold the `./deploy.sh` call 
 at the very bottom to see where the site got deployed to.
 ![](/posts/2018-06-12-getting-up-and-running-with-blogdown-netlify-and-travis_files/ci-deploy.png)
 
@@ -256,7 +256,7 @@ Paste this URL to a browser and check
 if the page looks as expected. Keep in mind that the netlify CI check that is 
 shown in the GitHub PR (depicted bellow) is the build of the empty page and is 
 hence irrelevant for the approach presented under the header 3b. 
-Use the one from the travis log in the above picture.
+Use the one from the Travis log in the above picture.
 ![](/posts/2018-06-12-getting-up-and-running-with-blogdown-netlify-and-travis_files/github-ci.png)
 
 I nevertheless changed the settings in netlify for the deployment for the 
@@ -265,7 +265,7 @@ the cactus plus theme has a minimal version requirement for hugo that is larger
 than the hugo default version.
 
 For the `build.sh` to get called, you obviously also need to change your
-`.traivs.yml`. Here is my final version:
+`.travis.yml`. Here is my final version:
 
 ```{r}
 cat(readLines(here::here(".travis.yml")), sep = "\n")
@@ -282,7 +282,7 @@ how the approach outlined in step 3b compare to existing solutions I have found.
   [bookdown](https://bookdown.org).
 * It is similar to [tidyverse.org](https://tidyverse.org) as the page also uses
   blogdown and offers PR build previews. The difference is that tidyverse.org 
-  does not use travis to deploy via netlify, but instead requires html 
+  does not use Travis to deploy via netlify, but instead requires html 
   versions of all pages to be committed that are build locally with blogdown.
 
 Looking back, it would have been much easier to build the page locally and 
