@@ -1,5 +1,5 @@
 # Site settings
-baseurl = "/"
+baseurl = "https://lorenzwalthert.netlify.com/"
 languageCode = "en"
 title = "Lorenz Walthert"
 theme = "hugo-theme-cactus-plus"
