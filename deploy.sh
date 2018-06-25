@@ -1,8 +1,8 @@
 #!/bin/bash
 echo "$PATH"
 echo "You are on branch"
-echo $(git symbolic-ref -q HEAD)
-if [[ $(git symbolic-ref -q HEAD) = "refs/heads/master" ]]
+echo "$TRAVIS_BRANCH"
+if [[ "$TRAVIS_BRANCH" = "master" ]]
 then
 	  echo "you are on master, deploying production."
 	  netlify deploy -t $NETLIFYKEY
