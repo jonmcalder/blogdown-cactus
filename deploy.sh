@@ -1,7 +1,6 @@
 #!/bin/bash
-echo "$PATH"
-echo "You are on branch"
-echo "$TRAVIS_BRANCH"
+echo "Your PATH is $PATH"
+echo "You are on branch $TRAVIS_BRANCH"
 if [[ "$TRAVIS_BRANCH" = "master" ]]
 then
 	  echo "you are on master, deploying production."
