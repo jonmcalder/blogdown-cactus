@@ -102,7 +102,12 @@ A quick Google search did not help much either. I then realized I might
 want to use the [Netlify cli tools](https://www.netlify.com/docs/cli/) 
 to deploy a locally built site with Netlify. The only problem with that 
 was that these only seemed to work properly on Linux, which is not my primary 
-operating system. Anyways, I managed to deploy a page from my Linux 
+operating system. It was only later that I figured out that there are also 
+officially supported cli tools 
+for [Windows and Mac](https://github.com/netlify/netlifyctl). You can use them
+analogously to the Linux cli tools, which I used bellow. Simply use 
+`netlifyctl` instead of `netlify` as your base command, the rest remains the 
+same. Anyways, I managed to deploy a page from my Linux 
 environment with Netlify. It's pretty straightforward once you succeeded 
 to build your website locally and stored it in the `public/` directory. 
 Here is what I did:
@@ -114,8 +119,13 @@ Here is what I did:
   [Netlify cli tools documentation](https://www.netlify.com/docs/cli/), i.e.
   essentially `$ netlify deploy` my `public/` folder.
 
-Alternatively, you can commit and push Markdown or html derivatives of your 
-R Markdown files and use the Netlify build command `hugo`, potentially specifying
+Please note at that point that you cannot proceed if you don't have a `.netlify` 
+file in the project root. You need to commit this file later so your remote CI 
+service has it available for step 3a onward.
+
+Alternatively to everything I wrote under step 2 so far, you can commit and 
+push Markdown or html derivatives of your  R Markdown files and use the 
+Netlify build command `hugo`, potentially specifying
 the hugo version as part of the build command (like `hugo_0.41`) or via an 
 environment variable. However, I refrained from doing this because I felt like
 this approach was not as clean as building the whole page on a remote CI tool.
@@ -192,9 +202,7 @@ There were only two more steps to complete:
   Alternatively, you can add install commands to your `.travis.yaml` file but 
   I think the DESCRIPTION solution is nicer.
 * Copy the `.netlify` file from my local Linux environment from which I have 
-  already successfully deployed the page. Please note at that point that 
-  you cannot proceed if you don't have a Linux environment `.netlify` file. The file is created in the root 
-  directory of your blogdown project. Don't know exactly what it does, but 
+  already successfully deployed the page. Don't know exactly what it does, but 
   I think it creates some *deplyoment context* that is used when you call 
   `$ netlify deploy`, 
   i.e. it does not prompt the user to give further instructions such as the 
