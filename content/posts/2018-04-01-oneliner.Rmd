@@ -13,6 +13,7 @@ description: styler is a flexible source code fromatter that makes styling files
   code.
 comments: yes
 slug: oneliner
+aliases: oneliner
 ---
 
 I am happy to introduce [oneliner](https://github.com/lorenzwalthert/oneliner), a package that implements the *one-line-style* as a third-party style guide ready to use with [styler](https://github.com/r-lib/styler). Hence, after the tidyverse style guide, this is the first third-party style guide for styler I am aware of - and a particularly useful one.
