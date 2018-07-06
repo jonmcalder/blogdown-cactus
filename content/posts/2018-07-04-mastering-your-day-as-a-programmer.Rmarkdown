@@ -1,0 +1,130 @@
+---
+title: Mastering your day as a programmer
+author: Lorenz Walthert
+date: '2018-07-04'
+slug: mastering-your-day-as-a-programmer
+categories:
+  - R
+tags:
+  - writing
+  - context
+description: How can you make most of your day? In this blogpost, I am going to 
+  discuss some strategies that I found helpful in increasing my productivity on 
+  a macro level.
+
+---
+
+How do you program? I feel like there is a lot of advice out there, but most of 
+it focuses on the micro level rather than on the macro level. That's why 
+decided to think about what makes one an efficient programmer on a macro level. 
+
+# Think long-term
+
+Spend time on improving your skills that help you becoming more productive in 
+the long run. 
+For example, it's a fact that git is the version control system of choice. And 
+there is no reason why this should change tomorrow. Or in 5 year's time. That
+in turn means that you need to know the ins and outs of git. Period. It will 
+make you so much more productive in the long run. I started knowing almost 
+nothing about git. But I used Google heavily whenever I wanted to do something
+with git I thought it must be capable of but I had no idea how. 
+I created a file with [git commands](https://github.com/lorenzwalthert/w-c4ds/blob/master/01-learning_resources/command_line_git.Rmd)
+and an explanation for it to learn. 
+
+Same thing with all tools that you rely on 
+heavily. Become a super user of the tools you use everyday (most notably the IDE 
+you are using) to give your 
+productivity a boost. Make sure you follow up on the major changes that come 
+with new releases of your tools. Know the keyboard shortcuts. And so on. You 
+get the point. If you find this difficult, follow the "Editor XYZ Tips" on 
+twitter or your social media platform of choice.
+
+Solving a problem often does not only help you solving this very problem. It also 
+gives you experience that you can *transfer* to other projects. Hence, it may 
+make sense to spend some more time on a piece of code simply because it makes 
+you a better coder. Whenever you think *ok, I did it, but I am sure there must be
+a better way*, it's probably time to remember this paragraph.
+
+
+# Take breaks
+
+It sounds like a contradiction but I feel like taking breaks is among the most 
+productive things you can do. This does not only apply to programming, but also.
+I think taking breaks becomes more important the more complex the task at hand 
+is. Taking a five minute break every 90 minutes sounds reasonable to me.
+
+# Zoom in, zoom out
+
+This is related to taking breaks. However, you don't need to take a break to 
+benefit from the *zoom-out-effect*, but if you do take one, it happens 
+automatically. The thing I am talking about is moving from a low-level 
+perspective to a high-level perspective. 
+This is crucial as we programmers tend to get stuck
+with a problem and they try to solve the problem *inside the box*, 
+although the obvious solution is *outside the box*. Zooming out is highly 
+effective if you are stuck. But your first need to realize that you are stuck.
+It can also happen that you programmed something that creates a lot of 
+unnecessary complexity / redundancy downstream, and that it *eats you up*. 
+If you feel like that, it's probably time to zoom out.
+
+# Break down your taks into pieces
+
+Another arguably straightforward advice. Instead of starting to work on a 
+problem right away, it often makes sense to break it down into smaller portions.
+These should be as self-containing as possible. Start out with the sub-task that
+has the fewest *dependencies*. When you are done, document and commit your work.
+I often left the office thinking "oh I am going to commit this tomorrow" and I 
+forgot. By lunchtime next day, I ended up with a convoluted `git diff`. 
+This sucks. Also, documenting at the end of a two-month project sounds like 
+trouble, so make sure you keep it up-to-date during the development phase.
+
+# Work in a team
+
+An African proverb goes as follows: 
+
+> If you want to go fast, go alone. If you want to go further, go together.
+
+No one is perfect. And I personally also don't enjoy working alone. Having 
+someone who reviews your code, asks the dumb questions and challenges you is in
+your best interest.
+
+# Live a healthy life
+
+I am not going to tell you how to achieve that. Just two things: Drinking enough 
+water during the day is essential to achieve good performance and exercising 
+certainly does not hurt it either.
+
+
+# Create a productive environment
+
+I get distracted easily if people around me chat. For that reason, I often 
+listen to music while at work. I can listen the very same song for a whole day 
+and it does not bore me. Rather, it's the contrary. On the other hand, I can't 
+listen to random songs all day long because they are taking too much of my 
+attention. Anyways the point I am trying to make is that you should create an 
+environment that lets you concentrate on your task. This involves other things 
+such as:
+
+* enough fresh air in the room you are working. 
+* the right amount of light.
+* the right temperature.
+* ans so on.
+
+# Catalize your thoughts through writing
+
+Another strategy if you don't feel like making any progress is to take a few 
+minutes and write things down.
+
+> Write about your problems. It's more precise than thinking. 
+
+> *Francoise Chollet, creator of keras*
+
+Writing forces you to express concisely what the problem is, why
+your solution does not work and what it may take for a solution to work. It 
+forces you to abstract from the irrelevant, focusing on what the key drivers of 
+your problem are.
+
+
+I hope reading this blog post will help you mastering your day. And those to 
+come. Feel free to comment below if I missed an important point. I may add it 
+later to the post if you permit.
