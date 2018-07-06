@@ -6,13 +6,16 @@ cache:
   packages: true
   directories:
   - $HOME/.npm
-
+branches:
+  only: 
+    - master
+    
 before_install:
 - npm install netlify-cli -g
 - Rscript -e 'blogdown::install_hugo()'
 
 script:
-- Rscript -e 'blogdown::build_site()'
+- Rscript -e 'blogdown::build_site(local = Sys.getenv("TRAVIS_PULL_REQUEST_BRANCH") != "")'
 
 after_success:
 - ./deploy.sh
