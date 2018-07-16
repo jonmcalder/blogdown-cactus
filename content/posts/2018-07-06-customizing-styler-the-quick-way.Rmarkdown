@@ -105,7 +105,7 @@ the naming etc. may change. For example, I only recently spotted that the rule
 to remove quotes (`fix_quotes`)is in the category *space*, which is clearly
 wrong and I think I will move it over to *token* in a future release of styler.
 
-# Some other rules and their tranformer
+# Some other rules and their tranformers
 
 * You don't like multi-line ifelse statements getting wrapped around curly
   braces: `transformers$token$wrap_if_else_multi_line_in_curly`.
