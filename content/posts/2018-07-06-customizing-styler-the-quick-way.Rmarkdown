@@ -1,0 +1,131 @@
+---
+title: Customizing styler - the quick way
+author: Lorenz Walthert
+date: '2018-07-16'
+slug: customizing-styler-the-quick-way
+categories:
+  - R
+tags:
+  - styler
+description: How can I force styler not to apply a certain rule?
+---
+
+> *I am currently experiencing problems with getting my posts in full length on
+r-bloggers. You can continue [here](https://lorenzwalthert.netlify.com) with
+reading in case only the first paragraph is rendered.*
+
+One cool thing that happens if you work resonates in the community is that you
+see other people using it. In this blog post I am going to address a typical
+question people have when they want to use a source code formatter - in
+particular styler:
+
+> *I don't like rule xyz of the tidyverse style guide, which is the default
+style guide implemented in styler. How can I tell styler not to apply it?*
+
+# Theory
+
+First, I think reading the docs would be a good approach. There are two
+resources:
+
+- The [help file](http://styler.r-lib.org/reference/tidyverse_style.html)
+  for the function `tidyverse_style()`, which returns the transformer functions  that prettify your code. It has a few interesting arguments, some of which are  rather complex.^[One example is `math_token_spacing`. It requires an input that  is typically easiest created with another function, e.g.  [specify_math_token_spacing()](http://styler.r-lib.org/reference/math_token_spacing.html)]
+- If you can't get styler behaving the way you want using the arguments of
+  `tidyverse_style()`, you have another option, which is described in a  [vignette](http://styler.r-lib.org/articles/customizing_styler.html): Creating  your own style guide. Yes, I admit, it's pretty long and if you don't want to  become a *styler expert*, it may be a little bit overwhelming.
+
+If you don't care about how to create new rules but you simply want to *remove*
+a rule, I have good news for you: There is a quick way to do it. These are the
+steps you need to complete in order to do it:
+
+- Figure out which transformer function in the transformers returned
+  by `tidyerse_style()` corresponds to the rule you want to remove.
+- Set that element in the list to `NULL`, which is equivalent to removing it.
+- Pass the list to `style_text` as a transformer.
+
+# Practice
+
+Lets assume you want to remove the rule that turns `=` into `<-` for assignment.
+That means you want ``` string = "hi there" ```
+
+to remain unchanged after applying styler. This is not the case if you use the
+default style guide of styler:
+
+```{r, comment = ""}
+library(styler)
+style_text("string = 'hi there'")
+```
+
+So you need to figure out which rule is responsible for this. Let's check the
+transformer categories used with the tidyverse style guide.
+
+```{r}
+transformers <- tidyverse_style()
+names(transformers)
+```
+
+From the aforementioned
+[vignette](http://styler.r-lib.org/articles/customizing_styler.html):
+
+> We note that there are different types of transformer functions. initialize
+initializes some variables in the nested parse table (so it is not actually a
+transformer), and the other elements modify either spacing, line breaks or
+tokens. use_raw_indention is not a function, it is just an option.
+
+Now, we can look at the names of the rules that are sub-elements of the
+transformer categories.
+
+```{r}
+library(styler)
+purrr::modify_depth(transformers, 1, names)
+```
+
+Spotted the rule we want to get rid of? It's under `token` and it's called
+`force_assignment_op`. I agree, we could have chosen a better name. If you are
+not sure if you can guess from the name of the rule what it does you can also
+have a look at the function declaration of this (unexported) function.
+
+```{r}
+styler:::force_assignment_op
+```
+
+Next, you simply set that element to `NULL`.
+
+```{r}
+transformers$token$force_assignment_op <- NULL
+```
+
+And you can use the modified transformer list as input to `style_text()`
+
+```{r, comment = ""}
+style_text("string = 'hi there'", transformers = transformers)
+```
+
+That's it. Note that the transformer functions and how they are returned by
+`tidyverse_style()` is not part of the exposed API. This means that the order,
+the naming etc. may change. For example, I only recently spotted that the rule
+to remove quotes (`fix_quotes`)is in the category *space*, which is clearly
+wrong and I think I will move it over to *token* in a future release of styler.
+
+# Some other rules and their tranformer
+
+* You don't like multi-line ifelse statements getting wrapped around curly
+  braces: `transformers$token$wrap_if_else_multi_line_in_curly`.
+* You don't like mutli-line calls to be broken before the first named argument.
+  `transformers$line_break$set_line_break_after_opening_if_call_is_multi_line`  (interacting with  `transformers$line_break$set_line_break_before_closing_call`).
+* You don't like the line being broken after the pipe:
+  `transformers$line_break$add_line_break_after_pipe`
+* You don't like single quotes to be replaced by double quotes:
+  `transformers$space$fix_quotes`.
+* You don't like comments to start with one space:
+  `transformers$space$start_comments_with_space`
+
+I think you get the idea. I nevertheless recommend using the [tidyverse style
+guide](http://style.tidyverse.org/) as is since
+
+- it is a well-established, thought-through style.
+- using a consistent style (no matter which) reduces fraction in the community.
+
+In case you want to *add* a custom rule, the vignette [Customizing
+styler](http://styler.r-lib.org/articles/customizing_styler.html) is still the
+way to go. If you have questions, don't hesitate to post on Stackoverflow or
+leave a comment below.
+
