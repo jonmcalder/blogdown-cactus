@@ -109,7 +109,7 @@ wrong and I think I will move it over to *token* in a future release of styler.
 
 * You don't like multi-line ifelse statements getting wrapped around curly
   braces: `transformers$token$wrap_if_else_multi_line_in_curly`.
-* You don't like mutli-line calls to be broken before the first named argument.
+* You don't like mutli-line calls to be broken before the first named argument:
   `transformers$line_break$set_line_break_after_opening_if_call_is_multi_line`  (interacting with  `transformers$line_break$set_line_break_before_closing_call`).
 * You don't like the line being broken after the pipe:
   `transformers$line_break$add_line_break_after_pipe`
