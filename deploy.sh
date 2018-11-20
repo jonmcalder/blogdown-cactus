@@ -8,5 +8,5 @@ then
 	  netlify deploy --prod
 else 
     echo "you are not on master, deploying preview."
-    netlify deploy --draft
+    netlify deploy
 fi
