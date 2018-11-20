@@ -1,0 +1,6 @@
+[Settings]
+  ID = "afaa3d42-3b5f-4403-91de-17e9e89335c9"
+
+[Build]
+  Publish = "public"
+  Functions = ""
