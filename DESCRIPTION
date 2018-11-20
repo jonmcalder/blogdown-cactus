@@ -1,4 +1,3 @@
-Package: Personal Webpage of Lorenz Walthert
 Title: The source code for the personal webpage of Lorenz Walthert
 Version: 0.0.0.9000
 Authors@R: person("Lorenz", "Walthert", email = "lorenz.walthert@icloud.com", role = c("aut", "cre"))
