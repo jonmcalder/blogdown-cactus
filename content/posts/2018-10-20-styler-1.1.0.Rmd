@@ -19,7 +19,7 @@ adapts to changes in the R parser committed into R devel ([#419](https://github.
 are:
 
 * styler can now style roxygen code examples in the source code of package.
-  This might be helfpul for package developers. The option is enabled by
+  This might be helpful for package developers. The option is enabled by
   default, so you have to explicitly turn it off if you want to styler to leave
   the code examples as is: 
 
@@ -47,7 +47,6 @@ styler::style_text(c(
   "}"
 ))
 ```
-  
 
 
 There were also quite a few minor changes, the most visible ones to the user 
@@ -55,6 +54,28 @@ were a complete re-design of the README and the fact that the cursor position is
 now remembered for styling via Addin. For details, you can have a look at the [release notes](https://github.com/r-lib/styler/releases/tag/v1.1.0) or check the 
 full [commit history](https://github.com/r-lib/styler).
 
+
 Thanks to all contributors for patches, issues and the like:
 @jonmcalder, @krlmlr, @IndrajeetPatil, @kalibera, @Hasnep, @kiranmaiganji, 
 @dirkschumacher, @ClaytonJY, @wlandau, @maurolepore.
+
+Although not directly related to this release, we would like to highlight that 
+the functionality of styler is also available in other packages:
+
+  - `usethis::use_tidy_style()` styles your project according to the
+    tidyverse style guide.
+  - `reprex::reprex(..., style = TRUE)` to prettify reprex code before
+    printing. To permanently use `style = TRUE` without specifying it
+    every time, you can add the following line to your `.Rprofile` (via
+    `usethis::edit_r_profile()`): `options(reprex.styler = TRUE)`.
+  - you can pretty-print your R code in RMarkdown reports without having
+    styler modifying the source. This feature is implemented as a code
+    chunk option in knitr. use `tidy = "styler"` in the header of a code
+    chunks (e.g. ` ```{r name-of-the-chunk, tidy = "styler"}`), or
+    `knitr::opts_chunk$set(tidy = "styler")` at the top of your
+    RMarkdown script. This feature requires the devel version of knitr.
+  - pretty-printing of [drake](https://github.com/ropensci/drake)
+    workflow data frames with `drake::drake_plan_source()`.
+
+For a complete walk-through we recommend to have a look at the [initial blog post](https://lorenzwalthert.netlify.com/posts/stylerpost/) that introduces 
+styler.
