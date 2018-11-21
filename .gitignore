@@ -4,3 +4,4 @@ public/
 content/posts/*.html
 content/posts/*.markdown
 .Rhistory
+token

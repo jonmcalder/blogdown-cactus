@@ -5,8 +5,8 @@ echo "The TRAVIS_PULL_REQUEST_BRANCH is $TRAVIS_PULL_REQUEST_BRANCH"
 if [[ "$TRAVIS_PULL_REQUEST_BRANCH" = "" ]]
 then
 	  echo "you are on master, deploying production."
-	  netlify deploy -t $NETLIFYKEY
+	  netlify deploy --prod
 else 
     echo "you are not on master, deploying preview."
-    netlify deploy -t $NETLIFYKEY --draft
+    netlify deploy
 fi
