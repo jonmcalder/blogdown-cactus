@@ -11,7 +11,8 @@ Imports:
     styler,
     oneliner,
     strcode,
-    here
+    here,
+    prettycode
 RoxygenNote: 6.0.1.9000
 Remotes: 
     lorenzwalthert/oneliner,

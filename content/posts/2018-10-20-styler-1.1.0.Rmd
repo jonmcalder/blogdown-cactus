@@ -40,8 +40,12 @@ styler::style_dir(filetype = c("r", "Rmd", ".rnw"))
   works when ran in a console though, so you can c/p this snippet into yours
   to see how it works:
   
-```{r}
-styler::style_text(c("add <- function(...) {", "purrr::reduce(list(...), `+`)", "}"))
+```{r, echo = TRUE, results = FALSE}
+styler::style_text(c(
+  "add <- function(...) {", 
+  "purrr::reduce(list(...), `+`)", 
+  "}"
+))
 ```
   
 
