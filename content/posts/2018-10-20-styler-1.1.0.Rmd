@@ -20,7 +20,7 @@ are:
 
 * styler can now style roxygen code examples in the source code of package.
   This might be helpful for package developers. The option is enabled by
-  default, so you have to explicitly turn it off if you want to styler to leave
+  default, so you have to explicitly turn it off if you want styler to leave
   the code examples as is: 
 
 ```{r, eval = FALSE}
