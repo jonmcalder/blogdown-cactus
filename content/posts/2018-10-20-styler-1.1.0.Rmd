@@ -1,7 +1,8 @@
 ---
 title: styler 1.1.0
 author: Lorenz Walthert
-date: '2018-11-27'
+date: '2018-11-27T11:40:00+03:00'
+time: '12-29'
 categories:
   - R
 tags:
