@@ -12,7 +12,7 @@ branches:
   
 
 before_script:
-- npm update -g node
+- npm update -g update-node
 - npm install -g netlify-cli
 - Rscript -e 'blogdown::install_hugo()'
 
