@@ -1,9 +1,6 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: R
-node_js:
-     - 8
-
 sudo: false
 cache:
   packages: true
@@ -14,6 +11,7 @@ branches:
     - master
     
 before_script:
+- npm install node@8
 - npm install netlify-cli -g
 - Rscript -e 'blogdown::install_hugo()'
 
