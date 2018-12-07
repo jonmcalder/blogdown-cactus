@@ -11,7 +11,8 @@ branches:
     - master
     
 before_script:
-- npm install node
+- npm install -g npm
+- npm install -g node
 - npm install netlify-cli -g
 - Rscript -e 'blogdown::install_hugo()'
 
