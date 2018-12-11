@@ -35,6 +35,9 @@ style_text(
 )
 ```
 
+You can also use other interfaces such as `styler::style_pkg(..., style = oneliner::one_line_style
+)` to style entire source trees.
+
 As you can guess from the name and the code above, the style guide has three rules only: 
 
 * Remove all comments.
