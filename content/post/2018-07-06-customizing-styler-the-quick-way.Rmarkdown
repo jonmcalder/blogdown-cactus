@@ -27,24 +27,38 @@ style guide implemented in styler. How can I tell styler not to apply it?*
 First, I think reading the docs would be a good approach. There are two
 resources:
 
-- The [help file](http://styler.r-lib.org/reference/tidyverse_style.html)
-  for the function `tidyverse_style()`, which returns the transformer functions  that prettify your code. It has a few interesting arguments, some of which are  rather complex.^[One example is `math_token_spacing`. It requires an input that  is typically easiest created with another function, e.g.  [specify_math_token_spacing()](http://styler.r-lib.org/reference/math_token_spacing.html)]
+- The [help file](http://styler.r-lib.org/reference/tidyverse_style.html) for
+  the function `tidyverse_style()`, which returns the transformer functions that
+  prettify your code. It has a few interesting arguments, some of which are
+  rather complex.^[One example is `math_token_spacing`. It requires an input
+  that is typically easiest created with another function, e.g.
+  [specify_math_token_spacing()](http://styler.r-lib.org/reference/math_token_spacing.html)]
+
 - If you can't get styler behaving the way you want using the arguments of
-  `tidyverse_style()`, you have another option, which is described in a  [vignette](http://styler.r-lib.org/articles/customizing_styler.html): Creating  your own style guide. Yes, I admit, it's pretty long and if you don't want to  become a *styler expert*, it may be a little bit overwhelming.
+  `tidyverse_style()`, you have another option, which is described in a
+  [vignette](http://styler.r-lib.org/articles/customizing_styler.html): Creating
+  your own style guide. Yes, I admit, it's pretty long and if you don't want to
+  become a *styler expert*, it may be a little bit overwhelming.
 
 If you don't care about how to create new rules but you simply want to *remove*
 a rule, I have good news for you: There is a quick way to do it. These are the
 steps you need to complete in order to do it:
 
-- Figure out which transformer function in the transformers returned
-  by `tidyerse_style()` corresponds to the rule you want to remove.
+- Figure out which transformer function in the transformers returned by
+  `tidyerse_style()` corresponds to the rule you want to remove.
+
 - Set that element in the list to `NULL`, which is equivalent to removing it.
+
 - Pass the list to `style_text` as a transformer.
 
 # Practice
 
 Lets assume you want to remove the rule that turns `=` into `<-` for assignment.
-That means you want ``` string = "hi there" ```
+That means you want
+
+``` 
+string = "hi there" 
+```
 
 to remain unchanged after applying styler. This is not the case if you use the
 default style guide of styler:
@@ -74,7 +88,6 @@ Now, we can look at the names of the rules that are sub-elements of the
 transformer categories.
 
 ```{r}
-library(styler)
 purrr::modify_depth(transformers, 1, names)
 ```
 
@@ -109,12 +122,18 @@ wrong and I think I will move it over to *token* in a future release of styler.
 
 * You don't like multi-line ifelse statements getting wrapped around curly
   braces: `transformers$token$wrap_if_else_multi_line_in_curly`.
+
 * You don't like mutli-line calls to be broken before the first named argument:
-  `transformers$line_break$set_line_break_after_opening_if_call_is_multi_line`  (interacting with  `transformers$line_break$set_line_break_before_closing_call`).
+  `transformers$line_break$set_line_break_after_opening_if_call_is_multi_line`
+  (interacting with
+  `transformers$line_break$set_line_break_before_closing_call`).
+
 * You don't like the line being broken after the pipe:
   `transformers$line_break$add_line_break_after_pipe`
+
 * You don't like single quotes to be replaced by double quotes:
   `transformers$space$fix_quotes`.
+
 * You don't like comments to start with one space:
   `transformers$space$start_comments_with_space`
 
@@ -122,10 +141,10 @@ I think you get the idea. I nevertheless recommend using the [tidyverse style
 guide](http://style.tidyverse.org/) as is since
 
 - it is a well-established, thought-through style.
+
 - using a consistent style (no matter which) reduces fraction in the community.
 
 In case you want to *add* a custom rule, the vignette [Customizing
 styler](http://styler.r-lib.org/articles/customizing_styler.html) is still the
 way to go. If you have questions, don't hesitate to post on Stackoverflow or
 leave a comment below.
-
