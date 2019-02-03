@@ -88,7 +88,8 @@ Now, we can look at the names of the rules that are sub-elements of the
 transformer categories.
 
 ```{r}
-purrr::modify_depth(transformers, 1, names)
+transformers
+purrr::modify_depth(transformers, 0, names)
 ```
 
 Spotted the rule we want to get rid of? It's under `token` and it's called
