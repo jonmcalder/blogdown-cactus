@@ -3,5 +3,7 @@ public/
 .Rproj.user
 content/posts/*.html
 content/posts/*.markdown
+content/post/*.markdown
+content/post/*.html
 .Rhistory
 token
