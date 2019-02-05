@@ -12,7 +12,7 @@ description: styler is a flexible source code fromatter that makes styling files
   style guide, but third party style guides are supported.
 comments: yes
 slug: stylerpost
-aliases: stylerpost
+aliases: [stylerpost, posts/stylerpost]
 ---
 
 I am pleased to announce that the R package 

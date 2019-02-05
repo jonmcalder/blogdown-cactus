@@ -11,8 +11,7 @@ tags:
 description: styler gains syntax highlighting, can style Rnw files, roxygen
   code examples and more in version 1.1.0.
 slug: styler-v1.1
-aliases: posts/styler-v1.1.0/
-
+aliases: [posts/styler-v1.1.0/, posts/styler-v1.1]
 comments: true
 ---
 

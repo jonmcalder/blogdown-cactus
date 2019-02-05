@@ -11,7 +11,7 @@ description: strcode provides tools to bring more structure into your code. Its 
   functionality is inserting code breaks and summarizing code.
 comments: yes
 slug: strcode1
-aliases: strcode1
+aliases: [strcode1, posts/strcode1]
 ---
 ```{r, include= FALSE}
 op <- options()$strcode

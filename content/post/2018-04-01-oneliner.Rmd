@@ -13,7 +13,7 @@ description: styler is a flexible source code fromatter that makes styling files
   code.
 comments: yes
 slug: oneliner
-aliases: oneliner
+aliases: [oneliner, posts/oneliner]
 ---
 
 

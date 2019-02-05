@@ -3,6 +3,7 @@ title: Switching to blogdown, Netlify and Travis
 author: Lorenz Walthert
 date: '2018-06-25'
 slug: getting-up-and-running-with-blogdown-netlify-and-travis
+aliases: posts/getting-up-and-running-with-blogdown-netlify-and-travis
 description: How I switched from Jekyll to blogdown and got Travis to build 
   my page and deploy it with Netlify. No derivatives such as md or html need
   to be committed and PR builds can be previewed.
