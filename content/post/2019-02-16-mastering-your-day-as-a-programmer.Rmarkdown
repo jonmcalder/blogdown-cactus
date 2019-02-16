@@ -9,19 +9,19 @@ categories:
 tags:
   - writing
   - context
-description: How can you make most of your day? In this blogpost, I am going to 
+description: How can you make the most of your day? In this blogpost, I am going to 
   discuss some strategies that I found helpful in increasing my productivity on 
   a macro level.
 
 ---
 
 How do you program? I feel like there is a lot of advice out there, but most of 
-it focuses on the micro level rather than on the macro level. That's why 
+it focuses on the micro level rather than on the macro level. That's why I
 decided to think about what makes one an efficient programmer on a macro level. 
 
 # Think long-term
 
-Spend time on improving your skills that help you becoming more productive in 
+Spend time on improving skills that help you become more productive in 
 the long run. 
 For example, it's a fact that git is the version control system of choice. And 
 there is no reason why this should change tomorrow. Or in 5 year's time. That
@@ -50,7 +50,7 @@ a better way*, it's probably time to remember this paragraph.
 # Take breaks
 
 It sounds like a contradiction but I feel like taking breaks is among the most 
-productive things you can do. This does not only apply to programming, but also.
+productive things you can do. This does not only apply to programming, but also other work.
 I think taking breaks becomes more important the more complex the task at hand 
 is. Taking a five minute break every 90 minutes sounds reasonable to me.
 
@@ -61,23 +61,23 @@ benefit from the *zoom-out-effect*, but if you do take one, it happens
 automatically. The thing I am talking about is moving from a low-level 
 perspective to a high-level perspective. 
 This is crucial as we programmers tend to get stuck
-with a problem and they try to solve the problem *inside the box*, 
+with a problem and then try to solve the problem *inside the box*, 
 although the obvious solution is *outside the box*. Zooming out is highly 
-effective if you are stuck. But your first need to realize that you are stuck.
+effective if you are stuck. But you first need to realize that you are stuck.
 It can also happen that you programmed something that creates a lot of 
 unnecessary complexity / redundancy downstream, and that it *eats you up*. 
 If you feel like that, it's probably time to zoom out.
 
-# Break down your taks into pieces
+# Break down your tasks into pieces
 
-Another arguably straightforward advice. Instead of starting to work on a 
+Another arguably straightforward piece of advice. Instead of starting to work on a 
 problem right away, it often makes sense to break it down into smaller portions.
-These should be as self-containing as possible. Start out with the sub-task that
+These should be as self-contained as possible. Start out with the sub-task that
 has the fewest *dependencies*. When you are done, document and commit your work.
 I often left the office thinking "oh I am going to commit this tomorrow" and I 
-forgot. By lunchtime next day, I ended up with a convoluted `git diff`. 
+forgot. By lunchtime the next day, I ended up with a convoluted `git diff`. 
 This sucks. Also, documenting at the end of a two-month project sounds like 
-trouble, so make sure you keep it up-to-date during the development phase.
+trouble, so make sure you keep documentation up-to-date during the development phase.
 
 # Work in a team
 
@@ -91,7 +91,7 @@ your best interest.
 
 # Live a healthy life
 
-I am not going to tell you how to achieve that. Just two things: Drinking enough 
+I am not going to tell you how to achieve this. Just two things: Drinking enough 
 water during the day is essential to achieve good performance and exercising 
 certainly does not hurt it either.
 
@@ -99,9 +99,9 @@ certainly does not hurt it either.
 # Create a productive environment
 
 I get distracted easily if people around me chat. For that reason, I often 
-listen to music while at work. I can listen the very same song for a whole day 
+listen to music while at work. I can listen to the very same song for a whole day 
 and it does not bore me. Rather, it's the contrary. On the other hand, I can't 
-listen to random songs all day long because they are taking too much of my 
+listen to random songs all day long because they take away too much of my 
 attention. Anyways the point I am trying to make is that you should create an 
 environment that lets you concentrate on your task. This involves other things 
 such as:
@@ -109,7 +109,7 @@ such as:
 * enough fresh air in the room you are working. 
 * the right amount of light.
 * the right temperature.
-* ans so on.
+* and so on.
 
 # Catalize your thoughts through writing
 
